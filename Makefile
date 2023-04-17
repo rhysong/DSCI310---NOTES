@@ -12,3 +12,9 @@ run:
 	-v /$(pwd)://home//rstudio \
 	dsci310-notes
 
+
+#fake code for reference
+#clean: 
+#	rm -rf data/processed
+#	rm -rf results
+#	rm -rf NBA_All-Star_Report.html

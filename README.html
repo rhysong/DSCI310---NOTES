@@ -357,21 +357,16 @@ display: none;
 <div id="example-to-create-integrate-renv-with-dockerfile" class="section level2">
 <h2>Example to create integrate RENV with Dockerfile</h2>
 <ol style="list-style-type: decimal">
-<li>Create a empty repository in Github and clone to your computer</li>
-</ol>
+<li>Create a empty repository in Github and clone to your computer
 <ul>
 <li>git clone [link]</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
+</ul></li>
 <li>Create a new project using the existing repository/directory you
-just cloned.</li>
-</ol>
+just cloned.
 <ul>
 <li>Top right hand corner in Rstudio</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Create a Dockerfile</li>
-</ol>
+</ul></li>
+<li>Create a Dockerfile
 <ul>
 <li>[console] <code>code .</code>
 <ul>
@@ -382,7 +377,73 @@ just cloned.</li>
 <ul>
 <li>Make sure you are in the right working directory</li>
 </ul></li>
-</ul>
+</ul></li>
+<li>Setup Dockerfile
+<ul>
+<li>See attached Dockerfile for example</li>
+<li>[console]
+<code>docker build --platform linux/x86_64 --tag dsci310-notes .</code></li>
+<li>[console]
+<code>docker run -it --rm -e PASSWORD=&quot;apassword&quot; -p 8787:8787 -v /$(pwd)://home//rstudio dsci310-notes</code></li>
+</ul></li>
+<li>Setup Makefile
+<ul>
+<li>Create a makefile with the file name “Makefile” in directory</li>
+<li>Structure is in the make file</li>
+<li>what you want to make : what you need to make it</li>
+<li>.PHONY to specify there is no dependencies</li>
+</ul></li>
+<li>Create a example rmarkdown report
+<ul>
+<li>Use Rstudio Newfile on the topbar</li>
+</ul></li>
+<li>Use RENV to snapshot what packages we used to automatically be
+included in Docker Image
+<ul>
+<li>Install RENV using packages tab</li>
+<li>Run <code>renv::init()</code> in console</li>
+<li>renv only snapshots the packages you used if you actively used
+it</li>
+<li>renv.lock stores the packages you used</li>
+<li>Run <code>renv::snapshot()</code> to update renv.lock file with the
+latest packages you used</li>
+<li>follows steps here to integrate renv with docker <a href="https://rstudio.github.io/renv/articles/docker.html" class="uri">https://rstudio.github.io/renv/articles/docker.html</a></li>
+<li>This method installs the packages into a new directory called
+/project</li>
+</ul></li>
+</ol>
+<p>Creating R-Package basic steps: <br> 1. Install
+<code>install.packages(&quot;devtools&quot;)</code> <br> 2. Load
+<code>library(&quot;devtools&quot;)</code> <br> 3. Use
+<code>create_package(path)</code> within your project folder <br> 4.
+<code>use_git()</code> if not already in git enabled folder. <br> 5.
+Create a new function with <code>use_r(&lt;name of function&gt;)</code>
+<br> 6. Load your newly written function with <code>load_all()</code>
+<br> 7. Edit DESCRIPTION file and add your name, and email/repo <br> 8.
+Add a license with <code>use_mit_license()</code> <br> 9. Insert
+Roxygen2 skeleton using the Code menu in taskbar and fill out skeleton
+<br> 10. Make sure your example actually runs or you with fail the
+check() later <br> 11. Run document to update NAMESPACE <br> 12. If you
+use any external packages use <code>use_package(&lt;name&gt;)</code> to
+load them into NAMESPACE <br> 13. Run <code>document()</code> to update
+NAMESPACE <br> 14. Run <code>use_testthat()</code> to create test
+folder, Run <code>use_test(&lt;function name&gt;)</code> to create test
+for specific function <br> See <a href="https://r-pkgs.org/whole-game.html#use_testthat">this</a> for
+example <br></p>
+<ol start="15" style="list-style-type: decimal">
+<li>If you are uploading package to github use
+<code>use_readme_rmd()</code> to create a readme file for the repo</li>
+</ol>
+<p>Git hub actions for COVR <br> 1. RUN:
+<code>library(&quot;devtools&quot;)</code> <br>
+<code>install.packages(&quot;covr&quot;)</code> <br>
+<code>install.packages(&quot;DT&quot;)</code> <br>
+<code>install.packages(&quot;htmltools&quot;)</code> <br>
+<code>library(covr)</code> <br> <code>report()</code> <br></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Use <code>use_github_action(&quot;test-coverage&quot;)</code> to create a
+github workflow</li>
+</ol>
 </div>
 </div>
 
