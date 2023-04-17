@@ -68,3 +68,7 @@ Git hub actions for COVR <br>
 
 2. Use `use_github_action("test-coverage")` to create a github workflow
 
+3. Make sure you got your account with covr setup
+
+4. Copy and paste the badge from the settings tab if you are into that sort of thing.
+
